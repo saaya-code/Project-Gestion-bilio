@@ -8,9 +8,9 @@ typedef struct
 {
   char nom[40];
   char prenom[40];
-} retardt;
+} per_ret;
 
-retardt tar[100];
+per_ret tar[100];
 
 typedef struct
 {
@@ -54,12 +54,12 @@ int verif(int i)
   else
     return 0;
 }
-void ajout_des_adherents()
+void ajoutDesAdherents()
 {
   int test;
-  void gestion_des_adherents();
+  void gestionDesAdhrts();
   n = -1;
-F:
+retour1:
   n++;
   printf("donner le nom :");
   scanf("%s", &t[n].nom);
@@ -78,15 +78,15 @@ F:
   printf("tapez 3 pour quitter :");
   printf("tapez 4 pour continuer :");
   scanf("%d", &test);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   if (test == 3)
-    gestion_des_adherents();
+    gestionDesAdhrts();
   else
-    goto F;
+    goto retour1;
 }
-void recherche_des_adherents()
+void rechercheDesAdherents()
 {
-  void gestion_des_adherents();
+  void gestionDesAdhrts();
   int choix, ident_a_chercher, type_a_chercher;
   char nom_a_chercher[40];
   printf("donner le critére de recherche:\n");
@@ -95,7 +95,7 @@ void recherche_des_adherents()
   printf("3.selon le type \n");
   printf("donner votre choix : \n");
   scanf("%d", &choix);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   switch (choix)
   {
     do
@@ -103,7 +103,7 @@ void recherche_des_adherents()
     case 1:
       printf("donner lidentifiant a chercher : \n");
       scanf("%d", &ident_a_chercher);
-      printf("********************************************* \n");
+      printf("--------------------------------------------------- \n");
       for (int i = 0; i < n; i++)
       {
         if (t[i].identifiant == ident_a_chercher)
@@ -119,7 +119,7 @@ void recherche_des_adherents()
     case 2:
       printf("donner le nom a chercher : \n");
       scanf("%s", &nom_a_chercher);
-      printf("*********************************************\n ");
+      printf("---------------------------------------------------\n ");
       for (int i = 0; i < n; i++)
       {
         if (strcmp(t[i].nom, nom_a_chercher) == 0)
@@ -135,7 +135,7 @@ void recherche_des_adherents()
     case 3:
       printf("donner le type a chercher : \n");
       scanf("%d", &type_a_chercher);
-      printf("*********************************************");
+      printf("---------------------------------------------------");
       for (int i = 0; i < n; i++)
       {
         if (t[i].type == type_a_chercher)
@@ -156,12 +156,12 @@ void recherche_des_adherents()
   }
   if (pos == -1)
     printf("cet utilisateur n'existe pas ");
-  printf("*********************************************\n");
-  gestion_des_adherents();
+  printf("---------------------------------------------------\n");
+  gestionDesAdhrts();
 }
 void affiche()
 {
-  void gestion_des_adherents();
+  void gestionDesAdhrts();
   int test;
   for (int i = 0; i < n; i++)
   {
@@ -169,15 +169,15 @@ void affiche()
   }
   printf("tapez 3 pour quitter :");
   scanf("%d", &test);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   if (test == 3)
-    gestion_des_adherents();
-  gestion_des_adherents();
+    gestionDesAdhrts();
+  gestionDesAdhrts();
 }
-void modif()
+void modifierDesAdhs()
 {
   int ident_a_chercher, choix;
-  void gestion_des_adherents();
+  void gestionDesAdhrts();
   printf("donner l identifiantifiant de l adherent a modifier :\n");
   scanf("%d", &ident_a_chercher);
   for (int i = 0; i < n; i++)
@@ -188,7 +188,7 @@ void modif()
       pos = i;
     }
   }
-F:
+retour1:
   printf("vous voulez modifier ? :\n");
   printf("1.Le nom : \n");
   printf("2.Le prenom : \n");
@@ -207,9 +207,9 @@ F:
       printf("tapez 2 pour Quitter : \n");
       scanf("%d", &choix);
       if (choix == 1)
-        goto F;
+        goto retour1;
       else
-        gestion_des_adherents();
+        gestionDesAdhrts();
       break;
 
     case 2:
@@ -219,9 +219,9 @@ F:
       printf("tapez 2 pour Quitter : \n");
       scanf("%d", &choix);
       if (choix == 1)
-        goto F;
+        goto retour1;
       else
-        gestion_des_adherents();
+        gestionDesAdhrts();
       break;
 
     case 3:
@@ -231,9 +231,9 @@ F:
       printf("tapez 2 pour Quitter : \n");
       scanf("%d", &choix);
       if (choix == 1)
-        goto F;
+        goto retour1;
       else
-        gestion_des_adherents();
+        gestionDesAdhrts();
       break;
 
     case 4:
@@ -243,9 +243,9 @@ F:
       printf("tapez 2 pour Quitter : \n");
       scanf("%d", &choix);
       if (choix == 1)
-        goto F;
+        goto retour1;
       else
-        gestion_des_adherents();
+        gestionDesAdhrts();
       break;
 
     default:
@@ -276,9 +276,9 @@ supprimer()
   n = n - 1;
 }
 
-void aff_ret()
+void affichageRetards()
 {
-  void gestion_des_adherents();
+  void gestionDesAdhrts();
   if (nbre_retards == -1)
     printf("aucun retardataire pour le moment \n ");
   else
@@ -286,40 +286,40 @@ void aff_ret()
     {
       printf(" %s %s est en retard \n", tar[i].nom, tar[i].prenom);
     }
-  gestion_des_adherents();
+  gestionDesAdhrts();
 }
 
-void gestion_des_adherents()
+void gestionDesAdhrts()
 {
   int choix;
   void menu();
   printf("******Gestion des adhrents******\n");
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   printf("1.Ajout d'un adherents\n");
   printf("2.Recherche d'un adherent\n");
-  printf("3.modification d'un adherent\n");
-  printf("4.supprimer un adherent\n");
+  printf("3.Modification d'un adherent\n");
+  printf("4.Supprimation un adherent\n");
   printf("5.Affichage de la liste des adhrents \n");
   printf("6.Affichage de la liste des retardataires \n");
   printf("7.Retour au menu principal\n");
-  printf("*********************************************\n");
-  printf("donner votre choix\n");
+  printf("---------------------------------------------------\n");
+  printf("Donner votre choix\n");
   scanf("%d", &choix);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   switch (choix)
   {
     do
     {
     case 1:
-      ajout_des_adherents();
+      ajoutDesAdherents();
       break;
 
     case 2:
-      recherche_des_adherents();
+      rechercheDesAdherents();
       break;
 
     case 3:
-      modif();
+      modifierDesAdhs();
       break;
 
     case 4:
@@ -331,7 +331,7 @@ void gestion_des_adherents()
       break;
 
     case 6:
-      aff_ret();
+      affichageRetards();
       break;
 
     case 7:
@@ -345,7 +345,7 @@ void gestion_des_adherents()
     } while (choix != 0);
   }
 }
-int verifd(int i)
+int verifDeplucationDoucments(int i)
 {
   int j = -1;
   do
@@ -357,12 +357,12 @@ int verifd(int i)
   else
     return 0;
 }
-void ajout_des_documents()
+void ajoutDesDocuments()
 {
   int test;
-  void gestion_des_docs();
+  void gestionDesDocs();
   nbre_docs = -1;
-F:
+retour1:
   nbre_docs++;
   printf("donner le titre :\n");
   scanf("%s", &tab[nbre_docs].titre);
@@ -372,7 +372,7 @@ F:
   {
     printf("donner le code de doc :\n");
     scanf("%d", &tab[nbre_docs].code);
-  } while (verifd(nbre_docs) == 0);
+  } while (verifDeplucationDoucments(nbre_docs) == 0);
   printf("donner le nbre d exemplaire :\n");
   scanf("%d", &tab[nbre_docs].nbre_exp);
   do
@@ -380,7 +380,7 @@ F:
     printf("donner le type :");
     printf("(1) livre|(2) pour article |(3) pour magazine \n");
     scanf("%d", &tab[nbre_docs].type);
-    printf("*********************************************\n");
+    printf("---------------------------------------------------\n");
   } while (tab[nbre_docs].type != 1 && tab[nbre_docs].type != 2 && tab[nbre_docs].type != 3);
   if (tab[nbre_docs].type == 1)
   {
@@ -416,22 +416,22 @@ F:
   printf("tapez 3 pour quitter :");
   printf("tapez 4 pour continuer :");
   scanf("%d", &test);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   if (test == 3)
-    gestion_des_docs();
+    gestionDesDocs();
   else
-    goto F;
+    goto retour1;
 }
 
-void recherche_des_documents()
+void rechercheDesDocs()
 {
-  void gestion_des_docs();
+  void gestionDesDocs();
   int type_a_chercher;
-F:
+retour1:
   printf("donner le type a chercher : \n");
   printf("(1) livre|(2) pour article |(3) pour magazine \n");
   scanf("%d", &type_a_chercher);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   switch (type_a_chercher)
   {
   case 1:
@@ -469,20 +469,20 @@ F:
 
   default:
     printf("le choix est incorrect ! ");
-    goto F;
+    goto retour1;
     break;
   }
   if (posd != 1)
     printf("ce doc n'existe pas ");
-  printf("*********************************************\n");
-  gestion_des_docs();
+  printf("---------------------------------------------------\n");
+  gestionDesDocs();
 }
 
-void modifd()
+void modifierDoc()
 {
   int code_a_chercher, choix;
-  void gestion_des_docs();
-F:
+  void gestionDesDocs();
+retour1:
   printf("donner le code du document a modifier :\n");
   scanf("%d", &code_a_chercher);
   for (int i = 0; i < n; i++)
@@ -508,9 +508,9 @@ F:
     printf("tapez 2 pour Quitter : \n");
     scanf("%d", &choix);
     if (choix == 1)
-      goto F;
+      goto retour1;
     else
-      gestion_des_docs();
+      gestionDesDocs();
   }
   if (tab[posd].type == 2)
   {
@@ -527,9 +527,9 @@ F:
     printf("tapez 2 pour Quitter : \n");
     scanf("%d", &choix);
     if (choix == 1)
-      goto F;
+      goto retour1;
     else
-      gestion_des_docs();
+      gestionDesDocs();
   }
 
   if (tab[posd].type == 3)
@@ -540,18 +540,18 @@ F:
     printf("tapez 2 pour Quitter : \n");
     scanf("%d", &choix);
     if (choix == 1)
-      goto F;
+      goto retour1;
     else
-      gestion_des_docs();
+      gestionDesDocs();
   }
   else
   {
     printf("le choix est incorrecte !! \n");
-    goto F;
+    goto retour1;
   }
 }
 
-supprimerd()
+supprimerDoc()
 {
   int code_a_chercher;
   printf("donner le code du doc a supprimer :\n");
@@ -575,9 +575,9 @@ supprimerd()
   nbre_docs = nbre_docs - 1;
 }
 
-void affiched()
+void afficheDoc()
 {
-  void gestion_des_docs();
+  void gestionDesDocs();
   int test;
   for (int i = 0; i < nbre_docs; i++)
   {
@@ -585,48 +585,48 @@ void affiched()
   }
   printf("tapez une touche pour quitter :");
   scanf("%d", &test);
-  printf("*********************************************\n");
-  gestion_des_docs();
+  printf("---------------------------------------------------\n");
+  gestionDesDocs();
 }
 
-void gestion_des_docs()
+void gestionDesDocs()
 {
   int choix;
   void menu();
   printf("******Gestion des documents******\n");
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   printf("1.Ajout d'un document\n");
   printf("2.Recherche d'un document\n");
   printf("3.modification d'un document\n");
   printf("4.supprimer un document\n");
   printf("5.afficher la liste de tous les documents\n");
   printf("6.Retour au menu principal\n");
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   printf("donner votre choix\n");
   scanf("%d", &choix);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   switch (choix)
   {
     do
     {
     case 1:
-      ajout_des_documents();
+      ajoutDesDocuments();
       break;
 
     case 2:
-      recherche_des_documents();
+      rechercheDesDocs();
       break;
 
     case 3:
-      modifd();
+      modifierDoc();
       break;
 
     case 4:
-      supprimerd();
+      supprimerDoc();
       break;
 
     case 5:
-      affiched();
+      afficheDoc();
       break;
 
     case 6:
@@ -691,12 +691,12 @@ int retard(int ns)
   }
   if (t[ns].type == 2)
   {
-    printf("donner la date de l emprunt : \n ");
+    printf("donner la date de l'emprunt : \n ");
     printf("Le jour : \n");
     scanf("%d", &d);
     printf("Le mois : \n");
     scanf("%d", &m);
-    printf("L anne : \n");
+    printf("L'année : \n");
     scanf("%d", &y);
     struct tm ts = {0};
     ts.tm_mday = d;
@@ -719,25 +719,25 @@ int retard(int ns)
   }
 }
 
-int nbr_max(int z)
+int nbr_max(int p)
 {
-  if (t[z].type == 1)
+  if (t[p].type == 1)
   {
-    if (t[z].nbr_empr > 2)
+    if (t[p].nbr_empr > 2)
       return 1;
     else
       return 0;
   }
-  if (t[z].type == 2)
+  if (t[p].type == 2)
   {
-    if (t[z].nbr_empr > 4)
+    if (t[p].nbr_empr > 4)
       return 1;
     else
       return 0;
   }
-  if (t[z].type == 3)
+  if (t[p].type == 3)
   {
-    if (t[z].nbr_empr > 1)
+    if (t[p].nbr_empr > 1)
       return 1;
     else
       return 0;
@@ -750,12 +750,12 @@ void fiche(int ms, int n)
   char dd[50] = "";
   if (t[ms].type == 1 || t[ms].type == 3)
   {
-    printf("donner la date de l emprunt : \n ");
+    printf("donner la date de l'emprunt : \n ");
     printf("Le jour : \n");
     scanf("%d", &d);
     printf("Le mois : \n");
     scanf("%d", &m);
-    printf("L anne : \n");
+    printf("L'année : \n");
     scanf("%d", &y);
     struct tm ts = {0};
     ts.tm_mday = d;
@@ -767,14 +767,14 @@ void fiche(int ms, int n)
     ts.tm_mday += 7;
     mktime(&ts);
     strftime(t[ms].date_emp, 50, "%Y-%m-%d", &ts);
-    printf("***********************************************\n");
+    printf("----------------------------------------------------\n");
     printf("* Client: %s %s \n", t[ms].nom, t[ms].prenom);
     printf("* Type: %d \n", t[ms].type);
     printf("* identifiantifiant: %d \n", t[ms].identifiant);
     printf("* document: %s de %s \n", tab[n].titre, tab[n].nom_aut);
     printf("* date d emprunt : %s \n", dd);
     printf("* date de retour : %s  \n", t[ms].date_emp);
-    printf("***********************************************\n");
+    printf("----------------------------------------------------\n");
   }
   if (t[ms].type == 2)
   {
@@ -795,29 +795,29 @@ void fiche(int ms, int n)
     ts.tm_mday += 7;
     mktime(&ts);
     strftime(t[ms].date_emp, 50, "%Y-%m-%d", &ts);
-    printf("***********************************************\n");
+    printf("----------------------------------------------------\n");
     printf("* Client: %s %s \n", t[ms].nom, t[ms].prenom);
     printf("* Type: %d \n", t[ms].type);
-    printf("* identifiantifiant: %d \n", t[ms].identifiant);
-    printf("* document: %s de %s \n", tab[n].titre, tab[n].nom_aut);
-    printf("* date d emprunt : %s \n", dd);
-    printf("* date de retour : %s  \n", t[ms].date_emp);
-    printf("***********************************************\n");
+    printf("* Identifiantifiant: %d \n", t[ms].identifiant);
+    printf("* Document: %s de %s \n", tab[n].titre, tab[n].nom_aut);
+    printf("* Date d'emprunt : %s \n", dd);
+    printf("* Date de retour : %s  \n", t[ms].date_emp);
+    printf("----------------------------------------------------\n");
   }
 }
 
-void gestion_des_empr()
+void gestionDesEmprts()
 {
   int ident_a_chercher, code_a_chercher, choix;
   void menu();
   printf("******Gestion des emprunts******\n");
-  printf("*********************************************\n");
-  printf("voici la liste de tous les adherents : \n");
+  printf("---------------------------------------------------\n");
+  printf("Voici la liste de tous les adherents : \n");
   for (int i = 0; i < n; i++)
   {
     printf("%s %s (de type %d) avec %d emprunts \n", t[i].nom, t[i].prenom, t[i].type, t[i].nbr_empr);
   }
-F:
+retour1:
   pos = -1;
   printf("Donner l'identifiantifiant du client svp : \n");
   scanf("%d", &ident_a_chercher);
@@ -825,18 +825,18 @@ F:
   {
     if (t[i].identifiant == ident_a_chercher)
     {
-      printf("%s %s de type %d est l adherents avec l'identifiantifiant %d \n", t[i].nom, t[i].prenom, t[i].type, t[i].identifiant);
+      printf("%s %s de type %d est l'dherents avec l'identifiant %d \n", t[i].nom, t[i].prenom, t[i].type, t[i].identifiant);
       pos = i;
     }
   }
   if (pos == -1)
   {
-    printf("n existe pas ! \n");
-    goto F;
+    printf("Identifiant n'existe pas ! \n");
+    goto retour1;
   }
   else if (retard(pos) == 1)
   {
-    printf("vous etes en retard emprunt impossible ! :( \n");
+    printf("Vous etes en retard emprunt\n");
     nbre_retards = nbre_retards + 1;
     strcat(tar[nbre_retards].prenom, t[pos].prenom);
     strcat(tar[nbre_retards].nom, t[pos].nom);
@@ -844,12 +844,12 @@ F:
   }
   else if (nbr_max(pos) == 1)
   {
-    printf("vous avez depasser la limite emprunt impossible ! :( \n");
+    printf("Vous avez depasser la limite emprunt impossible ! :( \n");
     menu();
   }
   else
   {
-  G:
+  retour3:
     printf("Donner le code du document a emprunter : \n");
     scanf("%d", &code_a_chercher);
     posd = -1;
@@ -864,7 +864,7 @@ F:
     if (posd == -1)
     {
       printf("le code est incorrect : \n ");
-      goto G;
+      goto retour3;
     }
     else
     {
@@ -873,47 +873,47 @@ F:
       tab[posd].nbre_exp = tab[posd].nbre_exp - 1;
     }
   }
-S:
-  printf("tapez 3 pour un autre emprunt\n");
-  printf("tapez 4 pour quitter \n");
-  printf("*********************************************\n");
+retour2:
+  printf("Tapez 3 pour un autre emprunt\n");
+  printf("Tapez 4 pour quitter \n");
+  printf("---------------------------------------------------\n");
   scanf("%d", &choix);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   if (choix == 3)
-    goto F;
+    goto retour1;
   else if (choix == 4)
     menu();
   else
   {
     printf("choix incorrect ! \n");
-    goto S;
+    goto retour2;
   }
 }
 void menu()
 {
   int choix;
   printf(" ****** BIENVENUE A NOTRE BIBLIOTHEQUE ****** \n");
-  printf("1. gestion_des_adherentes\n");
-  printf("2. gestion_des_docs\n");
-  printf("3. gestion_des_empr\n");
+  printf("1. gestionDesAdherentes\n");
+  printf("2. gestionDesDocs\n");
+  printf("3. gestionDesEmprts\n");
   printf("4. Quitter\n");
   printf("\n donner votre choix : ");
   scanf("%d", &choix);
-  printf("*********************************************\n");
+  printf("---------------------------------------------------\n");
   switch (choix)
   {
     do
     {
     case 1:
-      gestion_des_adherents();
+      gestionDesAdhrts();
       break;
 
     case 2:
-      gestion_des_docs();
+      gestionDesDocs();
       break;
 
     case 3:
-      gestion_des_empr();
+      gestionDesEmprts();
       break;
 
     case 4:
